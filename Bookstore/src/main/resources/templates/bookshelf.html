@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+<link rel="stylesheet" type="text/css" href="/css/footer.css" />
+<link rel="stylesheet" type="text/css" href="css/demo.css" />
+<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+	
+	
+	
+
+        <link rel="stylesheet" type="text/css" href="css/style4.css" />
+		
+		<script type="text/javascript" src="js/modernizr.custom.79639.js"></script> 
+		
+
+<body>
+	<div th:replace="common/header :: navbar" />
+ 
+      
+ 
+ 
+	<div class="container 1">
+		
+
+		<div class="row">
+			
+			
+			 <div class="container" style="margin-top: 40px;">
+			
+					
+					
+						<div id="sb-container" class="sb-container">
+						
+							<div>
+								<span class="sb-icon icon-cog"></span>
+								<h4><span><a th:href="@{/searchByCategory(category='Arts &amp; Literature')}" th:classappend="${activeArtsLiterature}? 'active'" >Arts &amp; Literature</a></span></h4>
+							</div>
+							<div>
+								<span class="sb-icon icon-flight"></span>
+								<h4><span><a th:href="@{/searchByCategory(category='Programming')}" th:classappend="${activeProgramming}? 'active'" >Programming</a></span></h4>
+							</div>	
+							<div>
+								<span class="sb-icon icon-eye"></span>
+								<h4><span><a th:href="@{/searchByCategory(category='Engineering')}" th:classappend="${activeEngineering}? 'active'" >Engineering</a></span></h4>
+							</div>	
+							<div>
+								<span class="sb-icon icon-install"></span>
+								<h4><span><a th:href="@{/searchByCategory(category='Fiction')}" th:classappend="${activeFiction}? 'active'" >Fiction</a></span></h4>
+							</div>	
+							<div>
+								<span class="sb-icon icon-bag"></span>
+								<h4><span><a th:href="@{/searchByCategory(category='Management')}" th:classappend="${activeManagement}? 'active'" >Management</a></span></h4>
+							</div>	
+		
+							<div>
+								<span class="sb-icon icon-picture"></span>
+								<h4><span><a th:href="@{/bookshelf(category='all')}" th:classappend="${activeAll}? 'active'" class="list-group-item">All</a></span></h4>											
+							</div>	
+										
+						</div><!-- sb-container -->
+						
+					
+			
+          </div>
+			
+			<div class="col-xs-8" style="margin-left:270px;margin-top: 80px; ">
+				<div th:if="${emptyList}">
+					<h5 style="font-style: italic;">Oops, no result is found. Try
+						something else or try again later.</h5>
+				</div>
+                 
+				<table border="0" id="bookList" class="table table-hover table-dark">
+					<thead>
+						<tr>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="book-item"  data-th-each="book : ${bookList}" >
+							<td>
+								<div th:if="${book != null}">
+									<div class="row" style="margin-bottom: 50px;">
+										<div class="col-xs-3">
+											<a th:href="@{/bookDetail?id=}+${book.id}"><img 
+												class="img-responsive shelf-book"
+												th:src="#{adminPath}+@{/image/book/}+${book.id}+'.jpg'" /></a>
+										</div>
+										<div class="col-xs-9" >
+											<a th:href="@{/bookDetail?id=}+${book.id}"><h4
+													th:text="${book.title}"></h4></a> <span
+												th:text="${book.publicationDate}"></span>
+											<p th:text="${book.author}"></p>
+											<a th:href="@{/bookDetail?id=}+${book.id}"><span
+												th:text="${#strings.capitalize(book.format)}"></span></a> <span
+												th:text="${book.numberOfPages}"><span> pages</span></span><br />
+
+											<a th:href="@{/bookDetail?id=}+${book.id}"><span
+												style="font-size: x-large; color: #db3208;">$<span
+													th:text="${#numbers.formatDecimal(book.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span></a>
+
+											<span style="text-decoration: line-through;">$<span
+												th:text="${#numbers.formatDecimal(book.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+
+											<p th:utext="${#strings.abbreviate(book.description, 1000)}"></p>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+
+
+	
+	
+	
+	
+	
+	
+<div th:replace="common/header :: footer"/>
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+	
+	
+	<script type="text/javascript" src="js/myJsPage.js"></script> 
+	
+		<script type="text/javascript" src="js/jquery.swatchbook.js"></script>
+		<script type="text/javascript">
+			$(function() {
+			
+				$( '#sb-container' ).swatchbook( {
+					speed : 500,
+					easing : 'ease-out',
+					// index of initial centered item
+					center : 5,
+					// number of degrees that is between each item
+					angleInc : 14,
+					// amount in degrees for the opened item's next sibling
+					proximity : 40,
+					// amount in degrees between the opened item's next siblings
+					neighbor : 2
+				} );
+			
+			});
+		</script>
+	
+	    
+		
+	
+</body>
+</html>

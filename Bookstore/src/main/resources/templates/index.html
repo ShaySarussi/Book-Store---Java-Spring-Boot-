@@ -1,0 +1,707 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+<link rel="stylesheet" type="text/css" href="/css/footer.css" />
+<link rel="stylesheet" type="text/css" href="/css/videoHeader.css" />
+<link rel="stylesheet" href="css/styleJQ.css" media="screen" />
+
+
+	<script src='js/prefixfree.min.js'></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+	<script src='js/jquery.scrollme.js'></script>
+    <script src='js/jquery.ind.js'></script>
+
+ <style>
+ 
+
+
+
+@-webkit-keyframes pulse {
+    0% {
+      -webkit-transform: scale(1) rotate(0deg); 
+    }
+    50% {
+      -webkit-transform: scale(1.1) rotate(-5deg); 
+    }
+    100% {
+      -webkit-transform: scale(1) rotate(0deg); 
+    }
+}
+@-o-keyframes pulse {
+    0% {
+      -o-transform: scale(1) rotate(0deg); 
+    }
+    50% {
+      -o-transform: scale(1.1) rotate(-5deg); 
+    }
+    100% {
+      -o-transform: scale(1) rotate(0deg); 
+    }
+}
+@-moz-keyframes pulse {
+    0% {
+      -moz-transform: scale(1) rotate(0deg); 
+    }
+    50% {
+      -moz-transform: scale(1.1) rotate(-5deg); 
+    }
+    100% {
+      -moz-transform: scale(1) rotate(0deg); 
+    }
+}
+@keyframes pulse {
+    0% {
+      transform: scale(1) rotate(0deg); 
+    }
+    50% {
+      transform: scale(1.1) rotate(-5deg); 
+    }
+    100% {
+      transform: scale(1) rotate(0deg); 
+    }
+}
+
+@-webkit-keyframes bump {
+  0% {
+      top: 0;
+  }
+  5% {
+      top: 3px;
+  }
+  10% {
+      top:0;
+  }
+  100% {
+      top:0;
+  }
+}
+@-o-keyframes bump {
+  0% {
+      top: 0;
+  }
+  5% {
+      top: 3px;
+  }
+  10% {
+      top:0;
+  }
+  100% {
+      top:0;
+  }
+}
+@-moz-keyframes bump {
+  0% {
+      top: 0;
+  }
+  5% {
+      top: 3px;
+  }
+  10% {
+      top:0;
+  }
+  100% {
+      top:0;
+  }
+}
+@keyframes bump {
+  0% {
+      top: 0;
+  }
+  5% {
+      top: 3px;
+  }
+  10% {
+      top:0;
+  }
+  100% {
+      top:0;
+  }
+}
+
+.menuBall {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.ball {
+    position:absolute;
+    width:200px;
+    height:200px;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -o-border-radius: 100%;
+    border-radius: 100%;
+    border: 2px dashed #fff;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.ball:hover {
+    -webkit-animation: pulse 1s ease 0s infinite normal;
+    -o-animation: pulse 1s ease 0s infinite normal;
+    -moz-animation: pulse 1s ease 0s infinite normal;
+    animation: pulse 1s ease 0s infinite normal;
+}
+
+.redball {
+    background-color: #d90e23;
+    -moz-box-shadow: 0 0 0 3px #d90e23, 2px 1px 4px 4px rgba(10,10,0,.5);
+    -webkit-box-shadow: 0 0 0 3px #d90e23, 2px 1px 4px 4px rgba(10,10,0,.5);
+    -o-box-shadow: 0 0 0 3px #d90e23, 2px 1px 4px 4px rgba(10,10,0,.5);
+    box-shadow: 0 0 0 3px #d90e23, 2px 1px 6px 4px rgba(10,10,0,.5);
+  
+    background-image: -moz-linear-gradient(0deg, rgba(0,0,0,.25) 50%, transparent 10%),-moz-linear-gradient(rgba(0,0,0,.25) 50%, transparent 50%);
+    background-image: -webkit-linear-gradient(0deg, rgba(0,0,0,.25) 50%, transparent 10%),-webkit-linear-gradient(rgba(0,0,0,.25) 50%, transparent 50%);
+    background-image: -o-linear-gradient(0deg, rgba(0,0,0,.25) 50%, transparent 10%),-o-linear-gradient(rgba(0,0,0,.25) 50%, transparent 50%);
+    background-size:10px 10px;
+}
+
+.blueball {
+    -moz-box-shadow: 0 0 0 3px #d6385b, 2px 1px 4px 4px rgba(10,10,0,.5);
+    -webkit-box-shadow: 0 0 0 3px #d6385b, 2px 1px 4px 4px rgba(10,10,0,.5);
+    -o-box-shadow: 0 0 0 3px #d6385b, 2px 1px 4px 4px rgba(10,10,0,.5);
+    box-shadow: 0 0 0 3px #d6385b, 2px 1px 6px 4px rgba(10,10,0,.5);
+
+    background-image: -webkit-linear-gradient(35deg, #9f2e86 25%, transparent 25%, transparent 75%, #9f2e86 75%, #9f2e86), 
+    -webkit-linear-gradient(-35deg, #9f2e86 25%, transparent 25%, transparent 75%, #9f2e86 75%, #9f2e86);
+    background-image: -moz-linear-gradient(35deg, #9f2e86 25%, transparent 25%, transparent 75%, #9f2e86 75%, #9f2e86), 
+    -moz-linear-gradient(-35deg, #9f2e86 25%, transparent 25%, transparent 75%, #9f2e86 75%, #9f2e86);
+    background-size:20px 20px;  
+    background-color: #d6385b;
+}
+
+
+
+.greenball {
+    -moz-box-shadow: 0 0 0 3px #65b37a, 2px 1px 4px 4px rgba(10,10,0,.5);
+    -webkit-box-shadow: 0 0 0 3px #65b37a, 2px 1px 4px 4px rgba(10,10,0,.5);
+    box-shadow: 0 0 0 3px #65b37a, 2px 1px 6px 4px rgba(10,10,0,.5);
+
+    background:
+        -webkit-radial-gradient(#e8b15e 4px, transparent 6px);
+    background:
+        -moz-radial-gradient(#e8b15e 4px, transparent 6px);
+    background-size: 20px 20px;
+  
+    background-image: -webkit-radial-gradient(#e8b15e 15%, transparent 16%),
+        -webkit-radial-gradient(#e8b15e 15%, transparent 16%);
+    background-image: -moz-radial-gradient(#e8b15e 15%, transparent 16%),
+        -moz-radial-gradient(#e8b15e 15%, transparent 16%);
+    background-color: #65b37a;
+    background-size:30px 30px;
+    background-position: 0 0, 20px 20px;
+}
+
+.menuText {
+    font-family: 'IdolwildRegular' , Verdana, Helvetica, Sans-Serif;
+    font-size: 20px;
+    color: #ffffff;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    top: 40%;
+}
+
+#menuBall1 {
+  -webkit-animation: bump 6s linear 0s infinite normal;
+}
+#menuBall2 {
+  -webkit-animation: bump 6s linear .5s infinite normal;
+}
+#menuBall3 {
+  -webkit-animation: bump 6s linear 1s infinite normal;
+}
+#menuBall4 {
+  -webkit-animation: bump 6s linear 1.5s infinite normal;
+}
+
+#menuBall1 {
+  -moz-animation: bump 6s linear 0s infinite normal;
+}
+#menuBall2 {
+  -moz-animation: bump 6s linear .5s infinite normal;
+}
+#menuBall3 {
+  -moz-animation: bump 6s linear 1s infinite normal;
+}
+#menuBall4 {
+  -moz-animation: bump 6s linear 1.5s infinite normal;
+}
+
+#menuBall1 {
+  -o-animation: bump 6s linear 0s infinite normal;
+}
+#menuBall2 {
+  -o-animation: bump 6s linear .5s infinite normal;
+}
+#menuBall3 {
+  -o-animation: bump 6s linear 1s infinite normal;
+}
+#menuBall4 {
+  -o-animation: bump 6s linear 1.5s infinite normal;
+}
+
+#menuBall1 {
+  animation: bump 6s linear 0s infinite normal;
+}
+#menuBall2 {
+  animation: bump 6s linear .5s infinite normal;
+}
+#menuBall3 {
+  animation: bump 6s linear 1s infinite normal;
+}
+#menuBall4 {
+  animation: bump 6s linear 1.5s infinite normal;
+}
+
+
+
+
+ 
+ </style>
+<body>
+	<div th:replace="common/header :: navbar" />
+<header>
+  <div class="overlay"></div>   
+  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="/image/bookVideo.mp4" type="video/mp4" />
+  </video>
+  
+</header>
+	<div class="container">
+		
+	<hr />
+		
+	<div class="row" style="margin-left:100px;">
+			<div class="col-xs-4">
+				<div>
+					<div class="panel-body">
+					    
+					    <div id="menuBall2" class="menuBall">
+					       <a th:href="@{/bookshelf}" class="ball redball">
+				           <div class="menuText">
+				               Shop Now
+				          </div>
+				          </a>
+				       </div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div>
+					<div class="panel-body">			
+						<div id="menuBall1" class="menuBall">
+				         <a th:href="@{/hours}" class="ball blueball">
+				           <div class="menuText">
+				                 Hours 
+				          </div>
+				        </a>
+				       </div>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4">
+				<div>
+					<div class="panel-body">
+					     <div id="menuBall" class="menuBall">
+					         <a th:href="@{/faq}" class="ball greenball">
+				                <div class="menuText">
+				                    Customer Service
+				               </div>
+				             </a>
+				         </div>
+				         
+				         
+				
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	
+	  
+	
+	</div>
+		
+
+    <section id="scrollme" class="section section_intro scrollme" style="margin-top:150px;">
+
+		<div class="wrapper">
+
+			<h1
+				class="fittext animateme"
+				data-when="exit"
+				data-from="0"
+				data-to="0.75"
+				data-opacity="0"
+				data-translatey="-250"
+			>
+				ScrollMe
+			</h1>
+			<h3
+				class="animateme"
+				data-when="exit"
+				data-from="0"
+				data-to="0.75"
+				data-opacity="0"
+				data-translatey="-150"
+			>
+			            To find out more....
+			</h3>
+
+		</div><!-- wrapper -->
+
+	</section>
+
+	
+
+	<section class="section">
+
+		<div class="wrapper">
+
+			<h2 id="about">About Us</h2>
+
+			<div class="columns columns_content">
+
+				<div class="column column_large">
+
+					<h3>The Book Store's mission is to inspire people to read!  What we gain from reading a book is invaluable.  </h3>
+
+					<p>We are going to make reading fun, inspirational and accessible to everyone.  In addition, we are supporting local gifted artisans through The Handmade Marketplace. </p>
+					<p>While you are enjoying a good book you can browse and shop over 1000 local original handmade products! </p>
+
+				</div><!-- column -->
+
+				<div class="column column_right column_medium">
+
+					<ul class="effects plain clearfix scrollme">
+						<li class="effect">
+							<div
+								class="effect_box effect_box_opacity animateme"
+								data-when="view"
+								data-from="0.5"
+								data-to="0"
+								data-opacity="0"
+							></div>
+						</li>
+						<li class="effect">
+							<div
+								class="effect_box effect_box_scale animateme"
+								data-when="view"
+								data-from="0.55"
+								data-to="0.05"
+								data-scale="0"
+							></div>
+						</li>
+						<li class="effect">
+							<div
+								class="effect_box effect_box_rotate animateme"
+								data-when="view"
+								data-from="0.6"
+								data-to="0.1"
+								data-rotatex="-90"
+								data-rotatey="90"
+								data-rotatez="-90"
+							></div>
+						</li>
+						<li class="effect">
+							<div
+								class="effect_box effect_box_translate animateme"
+								data-when="view"
+								data-from="0.65"
+								data-to="0.15"
+								data-translatex="400"
+								data-translatey="400"
+							></div>
+						</li>
+					</ul>
+
+				</div><!-- column -->
+
+				<div class="column column_large">
+
+					<h3>To apply for a position, please email your resume to thebookstoreinmedina@gmail.com.</h3>
+
+					<ul>
+						<li>No mailed or hand delivered resumes will be accepted.  </li>
+						<li>As of January 2019, we are not accepting any applications. We will post updates or job openings on Facebook. </li>
+						<li>We are located in Historic Medina Square</li>
+					</ul>
+
+				</div><!-- column -->
+
+			</div><!-- columns -->
+
+		</div><!-- wrapper -->
+
+	</section>
+
+	<hr />
+
+	<section class="section">
+
+		<div class="wrapper">
+
+			<h2 id="usage">Our Marketplace</h2>
+
+			<div class="columns columns_content">
+
+				<div class="column column_large">
+
+					<h3>Handmade Marketplace</h3>
+
+					<p>Our featured artisan of the month is Blimp City Gifts! </p>
+					<p><code class="code_value">Organic, minimalist, and whimsical jewelry designs highlighting the natural beauty of fine silver, copper, brass, fossils and semiprecious stones. </code></p>
+					<p>All proceeds from The Book Store go to Literacy Outreach which is a 501c3 organization.  Through the Literacy Outreach program we are able to donate books to underfunded classrooms and libraries throughout Ohio. </p>
+					
+
+				</div><!-- column -->
+
+				<div class="column column_medium">
+
+
+	
+<img src="/image/canva-man-looking.jpg" class="animateme scrollme"
+	data-when="enter"
+	data-from="0.75"
+	data-to="0"
+	data-opacity="0"
+	data-translatex="400"/>
+
+				</div><!-- column -->
+
+			</div><!-- columns -->
+
+			<div class="columns columns_content">
+
+				<div class="column column_large">
+
+					<h3>Book-A-Month Club</h3>
+
+					<p>Looking for a unique gift.  Try our Book-A-Month Club. You can sign up for one month, 3 month, 6 months, 9 months or 12 months.  Every month our talented staff will hand pick a book, based on the criteria you provide, and mail it to your loved one.</p>
+
+					<h3>Local Authors and Writers Program?</h3>
+
+					<p>If you are a local author and would like to sell your book on our dedicated site for local authors as well as in our store, contact us today!</p>
+
+				</div><!-- column -->
+
+			</div><!-- columns -->
+
+		</div><!-- wrapper -->
+
+	</section>
+
+	<hr />
+
+	<section class="section">
+
+		<div class="wrapper">
+
+			<h2 id="options">A few more things...</h2>
+
+			
+
+			<dl
+				class="scrollme animateme"
+				data-when="enter"
+				data-from="0.5"
+				data-to="0"
+				data-crop="false"
+				data-opacity="0"
+				data-scale="1.5"
+			>
+				<dt><code class="code_attribute">Our publishing division </code></dt>
+				<dd>
+					<p>Determines when the scrolling boundaries start and end.</p>
+					<ul>
+						<li>Rae Publishing, has everything you need to become a published author!  In addition, to publishing your book we provide you with marketing services to help you promote and sell your book.</li>
+						<li>We provide state-of-the-art printing services, book jacket design, editing services.</li>
+						<li>editing services, ghost writing (at an additional cost), promotional material and so much more!.</li>
+					</ul>
+				</dd>
+			</dl>
+
+			<dl
+				class="scrollme animateme"
+				data-when="enter"
+				data-from="0.5"
+				data-to="0"
+				data-crop="false"
+				data-opacity="0"
+				data-scale="1.5"
+			>
+				<dt><code class="code_attribute">Ghost Writing</code></dt>
+				<dd>
+					<p>If you have a great idea for a book or blog, but need help, our talented team is ready to help!</p>
+					<p>Simply schedule your first brainstorming session/free consultation to get started.</p>
+					<p>We also can help write: screenplays, manuscripts, whitepapers and short stories. </p>
+				</dd>
+			</dl>
+
+			<dl
+				class="scrollme animateme"
+				data-when="enter"
+				data-from="0.5"
+				data-to="0"
+				data-crop="false"
+				data-opacity="0"
+				data-scale="1.5"
+			>
+				<dt><code class="code_attribute">Speaker Bureau</code></dt>
+				<dd>
+					<p>Looking for an engaging and motivating speaker for your next event?</p>
+					<ul>
+						<li>We have access to hundreds of local speakers.  We will only provide you with a speaker that we have personally reviewed. </li>
+						<li>If you are in need of a space for your meeting, when you hire one of our speakers, you can use The Book Store for free. If you are a speaker</li>
+						<li>you can use The Book Store for free. If you are a speaker and would like to be included on our list of available speakers</li>
+						<li><code class="code_value">Book Store owner at thebookstoreinmedina@gmail.com.</code></li>
+					</ul>
+				</dd>
+			</dl>
+
+			<dl
+				class="scrollme animateme"
+				data-when="enter"
+				data-from="0.5"
+				data-to="0"
+				data-crop="false"
+				data-opacity="0"
+				data-scale="1.5"
+			>
+				<dt><code class="code_attribute">Marketing and Promotion</code></dt>
+				<dd>
+					<p>You have worked really hard writing and publishing your own book, but you are struggling to promote and sell it?</p>
+					<ul>
+						<li>We can help! We will provide all of the promotional materials, sales tips, social media marketing information you will need to sell your book. </li>
+						<li>Our talent has over 15 years of experience in business and marketing.  You are in excellent hands. </li>
+					</ul>
+				</dd>
+			</dl>
+
+			<dl
+				class="scrollme animateme"
+				data-when="enter"
+				data-from="0.5"
+				data-to="0"
+				data-crop="false"
+				data-opacity="0"
+				data-scale="1.5"
+			>
+				<dt><code class="code_attribute">Giving Back</code></dt>
+				<dd>
+					<p>Our net proceeds are donated to literacy outreach programs and organizations, that helps to fund underfunded libraries and schools in Ohio. </p>
+					<p>
+						Additionally, we offer one local graduating high school senior a textbook scholarship of<code class="code_value"> $500.00</code> every fall.  Please pay attention to our social media pages for the scholarship information.</p>
+				</dd>
+			</dl>
+
+			<dl
+				class="scrollme animateme"
+				data-when="enter"
+				data-from="0.5"
+				data-to="0"
+				data-crop="false"
+				data-opacity="0"
+				data-scale="1.5"
+			>
+				<dt><code class="code_attribute">scale Local Authors</code> </dt>
+				<dd>
+					<p><code class="code_value">Complete an application and start selling your book today!</code></p>
+					<p> 1. Our portion of the "fee" covers all of the sales tax, credit card fees, marketing, labor etc...</p>
+					<p>2. We include all local authors on the Indie Author and Writers webpage which helps promote online sales and national distribution </p>
+					<p>3. You are featured in our new monthly newsletter and online</p>
+					<p>4. You have first rights to host an author event at our store and be including in other author events throughout the yea</p>
+					<p>5. When asked by customers for a book recommendation we automatically recommend local authors first</p>
+					
+				</dd>
+			</dl>
+
+			<dl
+				class="scrollme animateme"
+				data-when="enter"
+				data-from="0.5"
+				data-to="0"
+				data-crop="false"
+				data-opacity="0"
+				data-scale="1.5"
+			>
+				<dt><code class="code_attribute"> Advertise at The Book Store</code></dt>
+				<dd>
+					<p><code class="code_value">Get your business in front of 100,000 + visitorsto </code> Medina Square Each Year!</p>
+					<p>What we offer: </p>
+                    
+					<p>1. Digital Marketing Opportunities</p>
+					<p>2. Exhibitor Marketing Opportunities
+
+					</p>
+					<p>3. Print Marketing Opportunities</p>
+					<p>4. Special Event Marketing Opportunities</p>
+
+				</dd>
+			</dl>
+
+			<dl
+				class="scrollme animateme"
+				data-when="enter"
+				data-from="0.5"
+				data-to="0"
+				data-crop="false"
+				data-opacity="0"
+				data-scale="1.5"
+			>
+				<dt><code class="code_attribute">Shop Online 24/7</code> </dt>
+				<dd>
+					<p>Would you like to sell your book at our store?  Be a part of events that bring thousands of visitors to Historic Medina, Ohio every year?  
+
+						Learn more about selling your book at The Book Store and how we can help promote your book. </p>
+						
+						<p>Click here for an application!</p>
+				</dd>
+			</dl>
+
+		</div><!-- wrapper -->
+
+	</section>
+
+	<footer class="footer scrollme">
+
+		<div
+			class="footer_block animateme"
+			data-when="enter"
+			data-from="1"
+			data-to="0"
+			data-rotatex="90"
+		>
+
+			<div class="wrapper">
+
+				<a th:href="@{/bookshelf}" >
+				           <h1>SHOP NOW</h1>
+				          </a>
+
+			</div><!-- wrapper -->
+
+		</div>
+
+	</footer>
+
+	
+	
+	
+	
+	<!-- end of container -->
+    
+<div th:replace="common/header :: footer"/>
+	<div th:replace="common/header :: body-bottom-scripts" />
+	
+	
+	 
+	
+</body>
+</html>
